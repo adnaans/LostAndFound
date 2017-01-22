@@ -1,51 +1,34 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>Basic modal demo</title>
-        <style type="text/css">
-            body { margin: 0; }
-            #shade, #modal { display: none; }
-            #shade { position: fixed; z-index: 100; top: 0; left: 0; width: 100%; height: 100%; }
-            #modal { position: fixed; z-index: 101; top: 33%; left: 25%; width: 50%; }
-            #shade { background: silver; opacity: 0.5; filter: alpha(opacity=50); }
-        </style>
-    </head>
-    <body>
-        <div id="shade"></div>
-        <div id="modal">
-            <textarea rows="5" cols="25"></textarea>
-            <button id="close">Close</button>
-        </div>
-
-        <p>
-            <button id="start">Start</button>
-        </p>
-        <script type="text/javascript">
-            var modal= document.getElementById('modal');
-            var shade= document.getElementById('shade');
-            document.getElementById('start').onclick= function() {
-                modal.style.display=shade.style.display= 'block';
-            };
-            document.getElementById('close').onclick= function() {
-                modal.style.display=shade.style.display= 'none';
-            };
-
-            // This code is a workaround for IE6's lack of support for the
-            // position: fixed style.
-            //
-            if (!('maxHeight' in document.body.style)) {
-                function modalsize() {
-                    var top= document.documentElement.scrollTop;
-                    var winsize= document.documentElement.offsetHeight;
-                    var docsize= document.documentElement.scrollHeight;
-                    shade.style.height= Math.max(winsize, docsize)+'px';
-                    modal.style.top= top+Math.floor(winsize/3)+'px';
-                };
-                modal.style.position=shade.style.position= 'absolute';
-                window.onscroll=window.onresize= modalsize;
-                modalsize();
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Website</title>
+    <script>
+      ButtonWebConfig = {
+        applicationId: 'app-34b40562e7edc60c',
+        defaults: {
+          'btn-xxxx': {
+            context: {
+              subject_location: {
+                latitude: '40.738275',
+                longitude: '-73.982285'
+              }
             }
-        </script>
-
-    </body>
+          }
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <h1>Get a ride</h1>
+    <div data-bttnio-id="btn-1d733d13a6129c7c"
+     data-bttnio-context='{ "user_location": { "latitude": 40.6827, "longitude": -73.9754 }, "subject_location": { "latitude": 40.7382869, "longitude": -73.9823721 } }'></div>
+     <script>
+   window.ButtonWebConfig = {
+     applicationId: 'app-34b40562e7edc60c'
+   };
+   (function(u,s,e,b,t,n){
+     u['__bttnio']=b;u[b]=u[b]||function(){(u[b].q=u[b].q||[]).push(arguments)};t=s.createElement(e);n=s.getElementsByTagName(e)[0];t.async=1;t.src='https://web.btncdn.com/v1/button.js';n.parentNode.insertBefore(t,n)
+   })(window, document, 'script', 'bttnio');
+   </script>
+  </body>
 </html>
