@@ -19,6 +19,7 @@
 <body>
   <header>Please enable location so that the person who lost the item can see where it is.</header>
   <script>
+      determineUID();
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
         var lat = position.coords.latitude;
@@ -34,7 +35,7 @@
                 if(max<response.results[i].address_components.length)
                   best = response.results[i].formatted_address;
               }*/
-              storeaddress(response.results[0]);
+              storeaddressandtime(response.results[0]);
             }
         }
         xmlHttp.open("GET", "https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lng+"&key=AIzaSyBlxJd9QXL6HGbqe4g29eYnlUBhb7rfwVM", true); // true for asynchronous
@@ -63,7 +64,6 @@
         // Browser doesn't support Geolocation
         console.log("fail");
       }
-      determineUID();
   </script>
   <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlxJd9QXL6HGbqe4g29eYnlUBhb7rfwVM">

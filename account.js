@@ -111,7 +111,16 @@ function register(){
             updates['/Users/'+uid + '/items/'+uuid] = postData;
             firebase.database().ref().update(updates).then(function(){
             console.log("updates pushed");
+            });
             window.location.href = "home.html";
+              var updates2 = {};
+              var postData2 = uid;
+              var uid = user.uid;
+              console.log(uid);
+              updates['/Items/'+uuid] = postData2;
+              firebase.database().ref().update(updates).then(function(){
+              console.log("updates pushed");
+              window.location.href = "home.html";
           });
             //checkupdate(user);
             //checkupdate(uservar);
@@ -132,7 +141,7 @@ function register(){
     firebase.auth().onAuthStateChanged(function(user) {
       if(user){
         var uid = user.uid;
-        var firebasenode = firebase.database().ref('/Users/' + uid + '/items');
+        var firebasenode = firebase.database().ref('/Users/' + uid + '/items/');
         firebasenode.once('value', function(snapshot) {
           console.log(snapshot);
           if(snapshot!="{}"){
@@ -150,8 +159,8 @@ function register(){
                   console.log(loc);
                 }
                 else{
-                  //time=snap.child("time");
-                  //loc=snap.child("loc");
+                  loc = snap.child("location").val();
+                  time = snap.child("time").val();
                 }
 
                 console.log(snap.val().name);
