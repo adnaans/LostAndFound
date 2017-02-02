@@ -137,43 +137,41 @@ function register(){
   }
   function updateTable(){
     console.log("here");
-    firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-          var uid = user.uid;
-          var firebasenode = firebase.database().ref('/Users/' + uid + '/items/');
-          firebasenode.once('value', function(snapshot) {
-            console.log(snapshot);
-            if(snapshot!="{}"){
-              $('#noitems').remove();
-              console.log("hejee");
-              var i = 1;
-              var userDict = {};
-              snapshot.forEach(function(snap){
-                  $('#item_table').append('<tr id="item'+(i)+'"></tr>');
-                  var time;
-                  var loc;
-                  if(snap.numChildren()==1){
-                    time="No one has scanned the QR code";
-                    loc="No one has scanned the QR code";
-                    console.log(time);
-                    console.log(loc);
-                  }
-                  else{
-                    loc = snap.child("location").val();
-                    time = snap.child("time").val();
-                  }
-
-                  $('#main').css('height', (parseFloat($('#main').css('height'))+180)+"px");
-
-                  console.log(snap.val().name);
-
-                  $('#item'+i).html("<td align = 'center'><p>"+snap.val().name+"<td align = 'center'><img id='code' src = 'https://api.qrserver.com/v1/create-qr-code/?size=75x75&data=file:///Users/adnaansachidanandan/Projects/LostAndFound/found.html?uid="+snap.key+"' alt = '...'></img></td><td><p>"+loc+"</p></td><td><p>"+time+"</p></td>");
-                  i++;
-                });
+    var user = firebase.auth().currentUser;
+    var uid = user.uid;
+    var firebasenode = firebase.database().ref('/Users/' + uid + '/items/');
+    firebasenode.once('value', function(snapshot) {
+      console.log(snapshot);
+      if(snapshot!="{}"){
+        $('#noitems').remove();
+        console.log("hejee");
+        var i = 1;
+        var userDict = {};
+        snapshot.forEach(function(snap){
+            $('#item_table').append('<tr id="item'+(i)+'"></tr>');
+            var time;
+            var loc;
+            if(snap.numChildren()==1){
+              time="No one has scanned the QR code";
+              loc="No one has scanned the QR code";
+              console.log(time);
+              console.log(loc);
             }
-          });
-        }
-      });
+            else{
+              loc = snap.child("location").val();
+              time = snap.child("time").val();
+            }
+
+            $('#main').css('height', (parseFloat($('#main').css('height'))+180)+"px");
+
+            console.log(snap.val().name);
+
+            $('#item'+i).html("<td align = 'center'><p>"+snap.val().name+"<td align = 'center'><img id='code' src = 'https://api.qrserver.com/v1/create-qr-code/?size=75x75&data=file:///Users/adnaansachidanandan/Projects/PenApps2017/found.html?uid="+snap.key+"' alt = '...'></img></td><td><p>"+loc+"</p></td><td><p>"+time+"</p></td>");
+            i++;
+          }
+        );
+      }
+    });
   }
 function updateMe(){
   firebase.auth().onAuthStateChanged(function(user) {
