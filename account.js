@@ -166,7 +166,7 @@ function register(){
 
             console.log(snap.val().name);
 
-            $('#item'+i).html("<td align = 'center'><p>"+snap.val().name+"<td align = 'center'><img id='code' src = 'https://api.qrserver.com/v1/create-qr-code/?size=75x75&data=file:///Users/adnaansachidanandan/Projects/PenApps2017/found.html?uid="+snap.key+"' alt = '...'></img></td><td><p>"+loc+"</p></td><td><p>"+time+"</p></td>");
+            $('#item'+i).html("<td align = 'center'><p>"+snap.val().name+"<td align = 'center'><img id='code' src = 'https://api.qrserver.com/v1/create-qr-code/?size=75x75&data=https://adnaans.github.io/LostAndFound/found.html?uid="+snap.key+"' alt = '...'></img></td><td><p>"+loc+"</p></td><td><p>"+time+"</p></td>");
             i++;
           }
         );
