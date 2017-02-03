@@ -48,7 +48,7 @@ function storeaddressandtime(add){
       updates['/Users/'+uid + '/items/'+uuid] = postData;
       firebase.database().ref().update(updates).then(function(){
       console.log("updates pushed");
-      alert("Thank you! The location was transmitted.");
+      alert("Thank you! The location was transmitted. I'm sure the person you just help will be grateful. You may close this site if you like.");
       });
     });
   });

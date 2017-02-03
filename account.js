@@ -121,6 +121,7 @@ function register(){
               firebase.database().ref().update(updates).then(function(){
               console.log("you did not meme");
               window.location.href = "home.html";
+              window.location.href = "home.html#items";
           });
             //checkupdate(user);
             //checkupdate(uservar);
