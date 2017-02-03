@@ -120,7 +120,7 @@ function register(){
               updates['/Items/'+uuid] = postData2;
               firebase.database().ref().update(updates).then(function(){
               console.log("you did not meme");
-              window.location.href = "home.html#items";
+              window.location.href = "home.html";
           });
             //checkupdate(user);
             //checkupdate(uservar);
